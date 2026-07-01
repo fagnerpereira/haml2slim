@@ -1,4 +1,4 @@
-# ADR 0001 — Modernize Minitest Usage and Declare Dev Dependencies Explicitly
+# ADR 0002 — Modernize Minitest Usage and Declare Dev Dependencies Explicitly
 
 Date: 2026-06-28  
 Status: Accepted
@@ -61,3 +61,20 @@ When a library ships multiple `require` paths, prefer the one documented at the 
 - CI is green.
 - Any developer who clones the repo will have minitest installed via `bundle install` regardless of their system Ruby version.
 - The gemspec now accurately describes what this gem needs to be developed and tested.
+
+## Addendum: This Was Originally Misnumbered as ADR 0001
+
+This decision was first filed as `docs/adr/0001-modernize-minitest-and-declare-dev-dependencies.md`,
+in the same PR that also introduced `docs/adr/0001-drop-ruby-30-and-add-ci.md` (the CI setup ADR).
+Two files claimed the number `0001` at once.
+
+This happens easily when ADRs are written across independent commits or sessions: each author
+looks at their own working tree, sees no `docs/adr/` entries yet (or an incomplete view of them),
+and assumes `0001` is free. Nothing enforces the sequence except convention.
+
+**Rule of thumb for ADR numbering**: before creating a new ADR, run `ls docs/adr/` (or check the
+latest merged number on the target branch) and take the next integer — don't trust a stale local
+checkout. If a collision is discovered after the fact, renumber the *later* decision forward and
+fix any cross-references to it, rather than renumbering the earlier one; this keeps the numbering
+consistent with the order decisions were actually made. That is why this file moved from `0001` to
+`0002`, and why "ADR 0002 — Update Test Class to `Minitest::Test`" moved to `0003`.
