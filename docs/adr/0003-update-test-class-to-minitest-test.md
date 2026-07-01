@@ -1,11 +1,11 @@
-# ADR 0002 — Update Test Class to Inherit from `Minitest::Test`
+# ADR 0003 — Update Test Class to Inherit from `Minitest::Test`
 
 Date: 2026-06-29
 Status: Accepted
 
 ## Context
 
-[ADR 0001](0001-modernize-minitest-and-declare-dev-dependencies.md) fixed the
+[ADR 0002](0002-modernize-minitest-and-declare-dev-dependencies.md) fixed the
 _loading_ side of the Minitest modernisation: it replaced the obsolete
 `require 'minitest/unit'` with `require 'minitest/autorun'` in `test/helper.rb`.
 
@@ -38,7 +38,7 @@ zero tests executed.
 
 ## Why Is This a Two-Step Bug?
 
-ADR 0001 landed in a previous PR, but this file was not updated at the same time. That
+ADR 0002 landed in a previous PR, but this file was not updated at the same time. That
 is the classic **partial migration** problem: a codebase has two places that embody the
 same assumption ("we use Minitest 4"), and only one of them was updated.
 
@@ -86,7 +86,7 @@ all subsequent versions. It provides the same `assert_*` / `refute_*` DSL that
 - The `uninitialized constant MiniTest (NameError)` boot error is resolved.
 - All existing test methods (`assert_equal`, `assert_haml_to_slim`, `assert_valid?`)
   continue to work unchanged — `Minitest::Test` provides the same assertion DSL.
-- Together with ADR 0001, the test suite is fully migrated to Minitest 5 and can run
+- Together with ADR 0002, the test suite is fully migrated to Minitest 5 and can run
   on any supported Ruby 3.x version.
 - Future contributors who check `class ... < Minitest::Test` will find it consistent
   with every modern Minitest tutorial and README.
